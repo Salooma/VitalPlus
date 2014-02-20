@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:orientation="vertical"
+    android:windowSoftInputMode="stateVisible"  >
+
+    <TextView
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:text="@string/second_activity"
+  android:gravity="center_horizontal"
+  android:typeface="sans"
+  android:textSize="32sp"
+	/>
+    
+      <EditText
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:hint="@string/profile_firstname"
+   android:inputType="text"
+	/>
+    
+        <EditText
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:hint="@string/profile_lastname"
+	android:inputType="text"
+	/>
+    
+          <EditText
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:hint="@string/profile_age"
+  android:inputType="number"
+	/>
+    
+            <EditText       
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:hint="@string/profile_weight"
+  android:inputType="number"
+	/>
+    
+              <EditText
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:hint="@string/profile_height"
+	 android:inputType="number"
+	/>
+    
+                <EditText
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:hint="@string/profile_gender"
+	/>
+
+                 <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="@string/send" />
+                
+                
+</LinearLayout>
