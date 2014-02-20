@@ -16,6 +16,7 @@ public class MainActivity extends Activity  {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		
 		final Context context = this;
 		
 		ImageButton ib = (ImageButton)findViewById(R.id.ibMainProfile);
