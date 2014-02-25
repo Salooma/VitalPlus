@@ -34,19 +34,19 @@ public class MainActivity extends Activity  {
 			}
 		});
 		
-//		ib2.setOnClickListener(new View.OnClickListener() 
-//		{
-//			
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				Intent intent = new Intent(context,SecondActivity.class);
-//				
-//				//start the second Activity
-//				startActivity(intent);
-//				
-//			}
-//		});
+		ib2.setOnClickListener(new View.OnClickListener() 
+		{
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(context,TabManager.class);
+				
+				//start the second Activity
+				startActivity(intent);
+				
+			}
+		});
 		
 	}
 
