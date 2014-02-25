@@ -2,7 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:background="#696969">
     
+    
+    <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:text="Your current Body Temperature is" 
+              android:gravity="center_horizontal"
+        	  android:textStyle="bold"
+       		  android:textSize="24sp"
+        	  android:textColor="#FFFFFF"/>
 
 </LinearLayout>
