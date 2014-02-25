@@ -14,7 +14,7 @@ public class HRFragment extends Fragment {
             Bundle savedInstanceState) {
  
         View rootView = inflater.inflate(R.layout.oxygen_tab, container, false);
-         
+       
         return rootView;
     }
 }

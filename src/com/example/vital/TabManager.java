@@ -15,7 +15,7 @@ public class TabManager extends FragmentActivity implements
     private ActionBar actionBar;
     // Tab titles
     private String[] tabs = { "Heart Rate", "Temperature", "SPO2 %" };
- 
+
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

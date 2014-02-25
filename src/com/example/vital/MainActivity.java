@@ -44,7 +44,7 @@ public class MainActivity extends Activity  {
 				
 				//start the second Activity
 				startActivity(intent);
-				
+			
 			}
 		});
 		

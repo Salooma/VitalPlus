@@ -12,7 +12,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
     public TabsPagerAdapter(FragmentManager fm) {
         super(fm);
     }
- 
+
     @Override
     public Fragment getItem(int index) {
  
