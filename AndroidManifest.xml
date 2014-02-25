@@ -30,7 +30,7 @@
 		
 		<activity
         android:name="TabManager"
-        android:label="Tab Manager">
+        android:label="Vitals">
 		</activity>
 		
         <activity android:name=".HRFragment"  ></activity>
