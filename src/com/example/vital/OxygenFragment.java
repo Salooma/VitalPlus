@@ -8,6 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
  
 public class OxygenFragment extends Fragment {
+	
+	static OxygenFragment init (int pos)
+	{
+		OxygenFragment oxFrag = new OxygenFragment();
+		Bundle args = new Bundle ();
+		args.putInt("pos", pos);
+		oxFrag.setArguments(args);
+		return oxFrag;
+		
+	}
  
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

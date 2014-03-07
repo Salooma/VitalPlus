@@ -8,6 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
  
 public class HRFragment extends Fragment {
+	
+	static HRFragment init (int pos)
+	{
+		HRFragment hrFrag = new HRFragment();
+		Bundle args = new Bundle ();
+		args.putInt("pos", pos);
+		hrFrag.setArguments(args);
+		return hrFrag;
+		
+	}
  
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
