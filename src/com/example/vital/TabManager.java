@@ -83,12 +83,6 @@ public class TabManager extends FragmentActivity implements
 		}
 		
 
-	
-
-	
-
-
-
 
 		@Override
 		public Fragment getItem(int position) {

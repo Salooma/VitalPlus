@@ -13,5 +13,22 @@
         	  android:textStyle="bold"
        		  android:textSize="24sp"
         	  android:textColor="#FFFFFF"/>
+    
+    <TextView 
+		android:id="@+id/tempvalue"
+	    android:layout_width="fill_parent" 
+	    android:layout_height="fill_parent"
+	    android:layout_weight="6"
+	    android:textSize="40sp"
+	    android:gravity="center"
+	    android:background="#fff"
+    />
+    
+     <com.example.vital.GraphView
+    	android:id="@+id/tempgraph"
+	    android:layout_width="fill_parent" 
+	    android:layout_height="fill_parent"
+	    android:layout_weight="4"
+    />
 
 </LinearLayout>
