@@ -11,11 +11,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import at.abraxas.amarino.AmarinoIntent;
  
 public class TempFragment extends Fragment {
  
 //	private ArduinoReceiver arduinoReceiver = new ArduinoReceiver();
+	TextView Temptxt;
 	
 	static TempFragment init (int pos)
 	{
@@ -33,6 +35,10 @@ public class TempFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.temp_tab, container, false);
          
+        Temptxt = (TextView)rootView.findViewById(R.id.tempvalue);
+        String value = ((TabManager)getActivity()).TempData;
+        Temptxt.setText(value);
+        
         return rootView;
     }
 	

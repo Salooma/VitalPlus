@@ -11,10 +11,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import at.abraxas.amarino.AmarinoIntent;
  
 public class HRFragment extends Fragment {
 	
+	TextView HRtxt;
 	//private ArduinoReceiver arduinoReceiver = new ArduinoReceiver();
 	
 	static HRFragment init (int pos)
@@ -33,6 +35,30 @@ public class HRFragment extends Fragment {
  
         View rootView = inflater.inflate(R.layout.hr_tab, container, false);
        
+        
+        //Bundle bundle = getActivity().getIntent().getExtras();
+//        Bundle bundle = this.getArguments();
+//        String value = bundle.getString("Heart Rate");
+//        String value = "33";
+       
+        HRtxt = (TextView)rootView.findViewById(R.id.hrvalue);
+        String value = ((TabManager)getActivity()).HRData;
+        HRtxt.setText(value);
+        
+        
+//        Bundle extras = getActivity().getIntent().getExtras();
+//        if (extras != null) {
+//                    String value = extras.getString("Heart Rate");
+//                    HRtxt.setText(value);
+//                    System.out.print(value);
+//        }
+        
+        //String value = this.getArguments().getString("Heart Rate");
+        
+      //if (HRtxt == null)
+     // 	Log.e("error", "Null TextView");
+        
+        
         return rootView;
     }
     

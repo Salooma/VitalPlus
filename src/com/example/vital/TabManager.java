@@ -13,6 +13,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.widget.TextView;
 
 public class TabManager extends FragmentActivity implements
         ActionBar.TabListener {
@@ -20,10 +22,15 @@ public class TabManager extends FragmentActivity implements
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
+    public String HRData = "TEST";
+    public String SPO2Data = "TEST1";
+    public String TempData = "TEST2";
+    
     SectionsPagerAdapter mSectionsPagerAdapter;
     // Tab titles
     private String[] tabs = { "Heart Rate", "Temperature", "SPO2 %" };
 
+    
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,16 +38,52 @@ public class TabManager extends FragmentActivity implements
  
         //Retrieve values from MainActivity
         Intent intent = getIntent();
-        String HRData = intent.getStringExtra("hr.value");
-        String SPO2Data = intent.getStringExtra("spo2.value");
-        String TempData = intent.getStringExtra("temp.value");
+
+        HRData = intent.getStringExtra("hr.value");
+        SPO2Data = intent.getStringExtra("spo2.value");
+        TempData = intent.getStringExtra("temp.value");
+        
+        
+        
+        
+        //Set Textview on each of the fragments to the retrieved data
+        
+        
+        
+////        if (HRData!=null)
+////        {
+//        
+//        HRtxt = (TextView) findViewById(R.id.hrvalue);
+//        if (HRtxt == null)
+//        	Log.e("error", "Null TextView");
+//        HRtxt.setText(HRData);
+////        }
+//        
+////        if (SPO2Data!=null)
+////        {
+//        SPO2txt = (TextView) findViewById(R.id.oxygenvalue);
+//        Temptxt.setText(SPO2Data);
+////        }
+//        
+////        if(TempData!=null){
+//        Temptxt = (TextView) findViewById(R.id.tempvalue);
+//        Temptxt.setText(TempData);
+////        }
         
         //Intent intent = new Intent();
-        intent.setClass(getApplicationContext(), TabManager.class);
+//        intent.setClass(getApplicationContext(), TabManager.class);
+        
         Bundle HRbundle=new Bundle();
        // bundle.putInt("battery", bat);
         HRbundle.putString("Heart Rate", HRData);
-        intent.putExtra("HRBundle", HRbundle);
+        HRFragment fragInfo = new HRFragment();
+        fragInfo.setArguments(HRbundle);
+//        intent.putExtra("HRBundle", HRbundle);
+        
+//        transaction.replace(R.id.fragment_single, fragInfo);
+//        transaction.commit();
+//        FragmentClass fragInfo = new FragmentClass();
+        //intent.putExtra("HRBundle", HRbundle);
         
         Bundle SPO2bundle=new Bundle();
         // bundle.putInt("battery", bat);

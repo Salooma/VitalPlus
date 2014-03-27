@@ -11,11 +11,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import at.abraxas.amarino.AmarinoIntent;
  
 public class OxygenFragment extends Fragment {
 	
 //	private ArduinoReceiver arduinoReceiver = new ArduinoReceiver();
+	TextView SPO2txt;
 	
 	static OxygenFragment init (int pos)
 	{
@@ -32,6 +34,11 @@ public class OxygenFragment extends Fragment {
             Bundle savedInstanceState) {
  
         View rootView = inflater.inflate(R.layout.oxygen_tab, container, false);
+        
+        SPO2txt = (TextView)rootView.findViewById(R.id.oxygenvalue);
+        String value = ((TabManager)getActivity()).SPO2Data;
+        SPO2txt.setText(value);
+        
         
         return rootView;
     }

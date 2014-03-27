@@ -32,7 +32,9 @@ private ArduinoReceiver arduinoReceiver = new ArduinoReceiver();
 	//Create object of DataHandler
 	DataHandler handler;
 	
-	public String HRValue, SPO2Value, TempValue;
+	public String HRValue = "heart";
+	public String SPO2Value = "oxygen";
+	public String TempValue = "temp";
 	
 	
     /** Called when the activity is first created. */
@@ -193,6 +195,8 @@ private ArduinoReceiver arduinoReceiver = new ArduinoReceiver();
 					}
 				
 			}
+				
+				
 				
 				
 				
