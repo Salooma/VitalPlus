@@ -5,6 +5,7 @@ import java.util.Locale;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -28,6 +29,35 @@ public class TabManager extends FragmentActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tabmanager);
  
+        //Retrieve values from MainActivity
+        Intent intent = getIntent();
+        String HRData = intent.getStringExtra("hr.value");
+        String SPO2Data = intent.getStringExtra("spo2.value");
+        String TempData = intent.getStringExtra("temp.value");
+        
+        //Intent intent = new Intent();
+        intent.setClass(getApplicationContext(), TabManager.class);
+        Bundle HRbundle=new Bundle();
+       // bundle.putInt("battery", bat);
+        HRbundle.putString("Heart Rate", HRData);
+        intent.putExtra("HRBundle", HRbundle);
+        
+        Bundle SPO2bundle=new Bundle();
+        // bundle.putInt("battery", bat);
+         HRbundle.putString("Blood Oxygen", SPO2Data);
+         intent.putExtra("SPO2bundle", SPO2bundle);
+         
+         Bundle Tempbundle=new Bundle();
+         // bundle.putInt("battery", bat);
+         HRbundle.putString("Temperature", TempData);
+         intent.putExtra("SPO2bundle", SPO2bundle);
+        
+        
+      
+        
+        
+        
+        
         viewPager = (ViewPager) findViewById(R.id.pager);
         actionBar = getActionBar();
         mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
@@ -123,9 +153,7 @@ public class TabManager extends FragmentActivity implements
                          return "SPO2 %".toUpperCase(l);
                  }
                  return null;
-         }
-
-		
+         }	
 		
 
 		// public int getItemPosition(Object item) {

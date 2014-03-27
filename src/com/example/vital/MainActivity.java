@@ -29,7 +29,10 @@ private ArduinoReceiver arduinoReceiver = new ArduinoReceiver();
 	// change this to your Bluetooth device address 
 	private static final String DEVICE_ADDRESS =  "00:00:12:06:60:32"; //"00:06:66:03:73:7B";
 	
+	//Create object of DataHandler
+	DataHandler handler;
 	
+	public String HRValue, SPO2Value, TempValue;
 	
 	
     /** Called when the activity is first created. */
@@ -64,6 +67,10 @@ private ArduinoReceiver arduinoReceiver = new ArduinoReceiver();
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(context,TabManager.class);
 				
+				intent.putExtra("hr.value", HRValue);
+				intent.putExtra("spo2.value", SPO2Value);
+				intent.putExtra("temp.value", TempValue);
+				
 				//start the second Activity
 				startActivity(intent);
 			
@@ -96,25 +103,28 @@ private ArduinoReceiver arduinoReceiver = new ArduinoReceiver();
 		Amarino.connect(this, DEVICE_ADDRESS);
 	}
 	
-	@Override
-	protected void onStop() {
-		super.onStop();
-		
-		// if you connect in onStart() you must not forget to disconnect when your app is closed
-		Amarino.disconnect(this, DEVICE_ADDRESS);
-		
-		// do never forget to unregister a registered receiver
-		unregisterReceiver(arduinoReceiver);
-	}
+//	@Override
+//	protected void onStop() {
+//		super.onStop();
+//		
+//		// if you connect in onStart() you must not forget to disconnect when your app is closed
+//		Amarino.disconnect(this, DEVICE_ADDRESS);
+//		
+//		// do never forget to unregister a registered receiver
+//		unregisterReceiver(arduinoReceiver);
+//	}
 	
-	public void goToProfile(View view){
-		Intent i = new Intent();
-		
-	}
-	
-	public void goToVitals(View view){
-		Intent i = new Intent();
-	}
+//	public void goToProfile(View view){
+//		Intent iProfile = new Intent();
+//		
+//	}
+//	
+//	public void goToVitals(View view){
+//		Intent iVitals = new Intent();
+//		iVitals.putExtra("hr.value", HRValue);
+//		iVitals.putExtra("spo2.value", SPO2Value);
+//		iVitals.putExtra("temp.value", TempValue);
+//	}
 	
 	/**
 	 * ArduinoReceiver is responsible for catching broadcasted Amarino
@@ -127,7 +137,12 @@ private ArduinoReceiver arduinoReceiver = new ArduinoReceiver();
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
+			
+			handler = new DataHandler(getBaseContext());
+			//open the DB
+			handler.open();
 			String data = null;
+			long id;
 			
 			// the device address from which the data was sent, we don't need it here but to demonstrate how you retrieve it
 			final String address = intent.getStringExtra(AmarinoIntent.EXTRA_DEVICE_ADDRESS);
@@ -140,6 +155,46 @@ private ArduinoReceiver arduinoReceiver = new ArduinoReceiver();
 			// you have to parse the data to the type you have sent from Arduino, like it is shown below
 			if (dataType == AmarinoIntent.STRING_EXTRA){
 				data = intent.getStringExtra(AmarinoIntent.EXTRA_DATA);
+				
+				if (data != null){
+				
+				if(0<=Integer.parseInt(data)&&Integer.parseInt(data)<=40){
+				//add to HR column of table in database
+//					ValueHR.setText(data);
+					
+					HRValue=data;
+					
+//					String getHRValue = data;
+//					id = handler.insertData(getHRValue, null, null);
+					
+			
+				}
+				if(410<=Integer.parseInt(data)&&Integer.parseInt(data)<=1010){
+				//divide by 10 and add data to SPO2 column of table in database
+					//ValueO.setText(Integer.toString(Integer.parseInt(data)/10));
+					
+					SPO2Value = Integer.toString(Integer.parseInt(data)/10);
+					
+					
+//					String getSPO2Value = Integer.toString(Integer.parseInt(data)/10);
+//					id = handler.insertData(null, getSPO2Value, null);
+					
+					}
+				if(10200<=Integer.parseInt(data)&&Integer.parseInt(data)<=15000){
+				//divide by 100 and add data to TEMP columb of table in database
+					
+					TempValue = Integer.toString(Integer.parseInt(data)/100);
+					
+//					String getTempValue = Integer.toString(Integer.parseInt(data)/100);
+//					id = handler.insertData(null, null, getTempValue);
+					
+					//ValueT.setText(Integer.toString(Integer.parseInt(data)/100));
+					//mGraph2.addDataPoint(Integer.parseInt(data)/100);
+					}
+				
+			}
+				
+				
 				
 //				if (data != null){
 //					

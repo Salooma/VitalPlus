@@ -12,7 +12,7 @@ import at.abraxas.amarino.AmarinoIntent;
 
 public class SecondActivity extends Activity {
 
-	private ArduinoReceiver arduinoReceiver = new ArduinoReceiver();
+//	private ArduinoReceiver arduinoReceiver = new ArduinoReceiver();
 
 	
 	    @Override
@@ -21,43 +21,43 @@ public class SecondActivity extends Activity {
 	        setContentView(R.layout.second);
 	    }
 	    
-	    public class ArduinoReceiver extends BroadcastReceiver {
-
-			@Override
-			public void onReceive(Context context, Intent intent) {
-				String data = null;
-				
-				// the device address from which the data was sent, we don't need it here but to demonstrate how you retrieve it
-				final String address = intent.getStringExtra(AmarinoIntent.EXTRA_DEVICE_ADDRESS);
-				
-				// the type of data which is added to the intent
-				final int dataType = intent.getIntExtra(AmarinoIntent.EXTRA_DATA_TYPE, -1);
-				
-				// we only expect String data though, but it is better to check if really string was sent
-				// later Amarino will support different data types, so far data comes always as string and
-				// you have to parse the data to the type you have sent from Arduino, like it is shown below
-				if (dataType == AmarinoIntent.STRING_EXTRA){
-					data = intent.getStringExtra(AmarinoIntent.EXTRA_DATA);
-					
-//					if (data != null){
-//						
-//						if(0<=Integer.parseInt(data)&&Integer.parseInt(data)<=40){
-//						ValueHR.setText(data);
+//	    public class ArduinoReceiver extends BroadcastReceiver {
+//
+//			@Override
+//			public void onReceive(Context context, Intent intent) {
+//				String data = null;
+//				
+//				// the device address from which the data was sent, we don't need it here but to demonstrate how you retrieve it
+//				final String address = intent.getStringExtra(AmarinoIntent.EXTRA_DEVICE_ADDRESS);
+//				
+//				// the type of data which is added to the intent
+//				final int dataType = intent.getIntExtra(AmarinoIntent.EXTRA_DATA_TYPE, -1);
+//				
+//				// we only expect String data though, but it is better to check if really string was sent
+//				// later Amarino will support different data types, so far data comes always as string and
+//				// you have to parse the data to the type you have sent from Arduino, like it is shown below
+//				if (dataType == AmarinoIntent.STRING_EXTRA){
+//					data = intent.getStringExtra(AmarinoIntent.EXTRA_DATA);
 //					
-//						//mGraph.addDataPoint(Integer.parseInt(data));
-//						}
-//						if(410<=Integer.parseInt(data)&&Integer.parseInt(data)<=1010){
-//							ValueO.setText(Integer.toString(Integer.parseInt(data)/10));
-//							//mGraph1.addDataPoint(Integer.parseInt(data)/10);
-//							}
-//						if(10200<=Integer.parseInt(data)&&Integer.parseInt(data)<=15000){
-//							ValueT.setText(Integer.toString(Integer.parseInt(data)/100));
-//							//mGraph2.addDataPoint(Integer.parseInt(data)/100);
-//							}
-//					}
-				}
-			}
-		}
+////					if (data != null){
+////						
+////						if(0<=Integer.parseInt(data)&&Integer.parseInt(data)<=40){
+////						ValueHR.setText(data);
+////					
+////						//mGraph.addDataPoint(Integer.parseInt(data));
+////						}
+////						if(410<=Integer.parseInt(data)&&Integer.parseInt(data)<=1010){
+////							ValueO.setText(Integer.toString(Integer.parseInt(data)/10));
+////							//mGraph1.addDataPoint(Integer.parseInt(data)/10);
+////							}
+////						if(10200<=Integer.parseInt(data)&&Integer.parseInt(data)<=15000){
+////							ValueT.setText(Integer.toString(Integer.parseInt(data)/100));
+////							//mGraph2.addDataPoint(Integer.parseInt(data)/100);
+////							}
+////					}
+//				}
+//			}
+//		}
 
 	    
 	    
