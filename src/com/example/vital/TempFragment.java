@@ -36,7 +36,7 @@ public class TempFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.temp_tab, container, false);
          
         Temptxt = (TextView)rootView.findViewById(R.id.tempvalue);
-        String value = ((TabManager)getActivity()).TempData;
+        String value = ((TabManager)getActivity()).TempValue;
         Temptxt.setText(value);
         
         return rootView;

@@ -2,10 +2,13 @@ package com.example.vital;
  
 import java.util.Locale;
 
+
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
+//import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -15,16 +18,28 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.widget.TextView;
+import at.abraxas.amarino.Amarino;
+import at.abraxas.amarino.AmarinoIntent;
 
 public class TabManager extends FragmentActivity implements
         ActionBar.TabListener {
+	
+	private static final String TAG = "Bluetooth";
+	ArduinoReceiver arduinoReceiver = new ArduinoReceiver();
+		
+		// change this to your Bluetooth device address 
+		private static final String DEVICE_ADDRESS =  "00:00:12:06:60:32"; //"00:06:66:03:73:7B";
+		
+		//Create object of DataHandler
+		DataHandler handler;
+		
+		public String HRValue = "heart";
+		public String SPO2Value = "oxygen";
+		public String TempValue = "temp";
  
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
-    public String HRData = "TEST";
-    public String SPO2Data = "TEST1";
-    public String TempData = "TEST2";
     
     SectionsPagerAdapter mSectionsPagerAdapter;
     // Tab titles
@@ -36,69 +51,10 @@ public class TabManager extends FragmentActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tabmanager);
  
-        //Retrieve values from MainActivity
-        Intent intent = getIntent();
-
-        HRData = intent.getStringExtra("hr.value");
-        SPO2Data = intent.getStringExtra("spo2.value");
-        TempData = intent.getStringExtra("temp.value");
-        
-        
-        
-        
-        //Set Textview on each of the fragments to the retrieved data
-        
-        
-        
-////        if (HRData!=null)
-////        {
-//        
-//        HRtxt = (TextView) findViewById(R.id.hrvalue);
-//        if (HRtxt == null)
-//        	Log.e("error", "Null TextView");
-//        HRtxt.setText(HRData);
-////        }
-//        
-////        if (SPO2Data!=null)
-////        {
-//        SPO2txt = (TextView) findViewById(R.id.oxygenvalue);
-//        Temptxt.setText(SPO2Data);
-////        }
-//        
-////        if(TempData!=null){
-//        Temptxt = (TextView) findViewById(R.id.tempvalue);
-//        Temptxt.setText(TempData);
-////        }
-        
-        //Intent intent = new Intent();
-//        intent.setClass(getApplicationContext(), TabManager.class);
-        
-        Bundle HRbundle=new Bundle();
-       // bundle.putInt("battery", bat);
-        HRbundle.putString("Heart Rate", HRData);
-        HRFragment fragInfo = new HRFragment();
-        fragInfo.setArguments(HRbundle);
-//        intent.putExtra("HRBundle", HRbundle);
-        
-//        transaction.replace(R.id.fragment_single, fragInfo);
-//        transaction.commit();
-//        FragmentClass fragInfo = new FragmentClass();
-        //intent.putExtra("HRBundle", HRbundle);
-        
-        Bundle SPO2bundle=new Bundle();
-        // bundle.putInt("battery", bat);
-         HRbundle.putString("Blood Oxygen", SPO2Data);
-         intent.putExtra("SPO2bundle", SPO2bundle);
-         
-         Bundle Tempbundle=new Bundle();
-         // bundle.putInt("battery", bat);
-         HRbundle.putString("Temperature", TempData);
-         intent.putExtra("SPO2bundle", SPO2bundle);
-        
-        
-      
-        
-        
+        //Set Vital Values here - call from ArduinoReceiver class
+        HRValue = arduinoReceiver.getHRData();
+        SPO2Value = arduinoReceiver.getSPO2Data();
+        TempValue = arduinoReceiver.getTempData();
         
         
         viewPager = (ViewPager) findViewById(R.id.pager);
@@ -136,18 +92,14 @@ public class TabManager extends FragmentActivity implements
 		}    
 	}
 	
-	
-	
-	
+
 	
 	/**
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
 	 * one of the sections/tabs/pages.
 	 */
 	public  class SectionsPagerAdapter extends FragmentPagerAdapter {
-		
-	
-	
+
 		Context context;
 		
 		public SectionsPagerAdapter(FragmentManager fragmentManager, Context context, ViewPager mViewPager) {
@@ -197,19 +149,6 @@ public class TabManager extends FragmentActivity implements
                  }
                  return null;
          }	
-		
-
-		// public int getItemPosition(Object item) {
-		//	 FragCart fragment = (FragCart)item;
-		 //       String title = fragment.getTitle();
-		//        int position = titles.indexOf(title);
-
-		//        if (position >= 0) {
-		//            return position;
-		  //      } else {
-		///            return POSITION_NONE;
-		//        }
-		// }
 		 
 		@Override
 		public int getItemPosition(Object object) {
@@ -221,8 +160,6 @@ public class TabManager extends FragmentActivity implements
 				return  3;
 			}
 	}
-
-	
 
 	@Override
 	public void onTabReselected(Tab arg0, android.app.FragmentTransaction arg1) {
@@ -240,4 +177,27 @@ public class TabManager extends FragmentActivity implements
 	public void onTabUnselected(Tab arg0, android.app.FragmentTransaction arg1) {
 		// TODO Auto-generated method stub
 		
-	}}
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		// in order to receive broadcasted intents we need to register our receiver
+		registerReceiver(arduinoReceiver, new IntentFilter(AmarinoIntent.ACTION_RECEIVED));
+		
+		// this is how you tell Amarino to connect to a specific BT device from within your own code
+		Amarino.connect(this, DEVICE_ADDRESS);
+	}
+	
+	@Override
+	protected void onStop() {
+		super.onStop();
+		
+		// if you connect in onStart() you must not forget to disconnect when your app is closed
+		Amarino.disconnect(this, DEVICE_ADDRESS);
+		
+		// do never forget to unregister a registered receiver
+		unregisterReceiver(arduinoReceiver);
+	}
+
+}

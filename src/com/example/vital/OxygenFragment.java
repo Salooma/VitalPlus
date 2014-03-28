@@ -36,7 +36,7 @@ public class OxygenFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.oxygen_tab, container, false);
         
         SPO2txt = (TextView)rootView.findViewById(R.id.oxygenvalue);
-        String value = ((TabManager)getActivity()).SPO2Data;
+        String value = ((TabManager)getActivity()).SPO2Value;
         SPO2txt.setText(value);
         
         

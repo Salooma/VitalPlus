@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.vital.MainActivity"
+            android:name="com.example.vital.TabManager"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,10 +28,7 @@
         android:label="Second Activity">
 		</activity>
 		
-		<activity
-        android:name="TabManager"
-        android:label="Vitals">
-		</activity>
+
 		
         <activity android:name=".HRFragment"  ></activity>
         <activity android:name=".OxygenFragment"  ></activity> 
