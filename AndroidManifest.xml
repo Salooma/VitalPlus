@@ -10,7 +10,7 @@
     
     <application
         android:allowBackup="true"
-        android:icon="@drawable/app_icon"
+        android:icon="@drawable/ic_newapp_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -25,10 +25,9 @@
         
         <activity
         android:name="SecondActivity"
-        android:label="Second Activity">
+        android:label="Second Activity"
+        android:parentActivityName="com.example.vital.TabManager">
 		</activity>
-		
-
 		
         <activity android:name=".HRFragment"  ></activity>
         <activity android:name=".OxygenFragment"  ></activity> 

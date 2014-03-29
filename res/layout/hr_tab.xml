@@ -3,33 +3,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#696969" >
+    android:background="#696969">
     
     
     <TextView android:layout_width="fill_parent"
               android:layout_height="wrap_content"
-              android:text="Your current Heart Rate is" 
+              android:text="\n Your current Heart Rate is" 
               android:gravity="center_horizontal"
         	  android:textStyle="bold"
-       		  android:textSize="24sp"
-        	  android:textColor="#FFFFFF"/>
+       		  android:textSize="20sp"
+        	  android:textColor="#FFFFFF"
+        	  android:fontFamily="Tahoma"/>
+    
     
    <TextView 
 		android:id="@+id/hrvalue"
 	    android:layout_width="fill_parent" 
 	    android:layout_height="fill_parent"
 	    android:layout_weight="6"
-	    android:textSize="40sp"
+	    android:textSize="80sp"
 	    android:gravity="center"
-	    android:background="#fff"
+	    android:background="#696969"
+	    android:textColor="#FFFFFF"
     />
+   
      
+     <!--  
     <com.example.vital.GraphView
     	android:id="@+id/hrgraph"
 	    android:layout_width="fill_parent" 
 	    android:layout_height="fill_parent"
 	    android:layout_weight="4"
     />
+    -->
     
     
 

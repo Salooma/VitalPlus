@@ -17,6 +17,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 import at.abraxas.amarino.Amarino;
 import at.abraxas.amarino.AmarinoIntent;
@@ -44,6 +47,14 @@ public class TabManager extends FragmentActivity implements
     SectionsPagerAdapter mSectionsPagerAdapter;
     // Tab titles
     private String[] tabs = { "Heart Rate", "Temperature", "SPO2 %" };
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
     
 	@Override
@@ -52,9 +63,9 @@ public class TabManager extends FragmentActivity implements
         setContentView(R.layout.tabmanager);
  
         //Set Vital Values here - call from ArduinoReceiver class
-        HRValue = arduinoReceiver.getHRData();
-        SPO2Value = arduinoReceiver.getSPO2Data();
-        TempValue = arduinoReceiver.getTempData();
+//        HRValue = arduinoReceiver.getHRData();
+//        SPO2Value = arduinoReceiver.getSPO2Data();
+//        TempValue = arduinoReceiver.getTempData();
         
         
         viewPager = (ViewPager) findViewById(R.id.pager);
@@ -66,10 +77,7 @@ public class TabManager extends FragmentActivity implements
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);    
         
 		mSectionsPagerAdapter = new SectionsPagerAdapter(this.getSupportFragmentManager() ,this.getApplicationContext(), viewPager);
- 
-//        // Adding Tabs
-//        for (String tab_name : tabs) {
-//            actionBar.addTab(actionBar.newTab().setText(tab_name).setTabListener(this));}
+
         viewPager.setOffscreenPageLimit(mSectionsPagerAdapter.getCount() - 1);
         viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
         	 
@@ -180,13 +188,33 @@ public class TabManager extends FragmentActivity implements
 	}
 	
 	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		//Context context;
+		
+	    // Handle presses on the action bar items
+	    switch (item.getItemId()) {
+	        case R.id.action_profile:
+	        	Intent intent = new Intent(this, SecondActivity.class);
+	        	startActivity(intent);
+	        	//openSearch();
+	            return true;
+//	        case R.id.action_settings:
+//	            openSettings();
+//	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	
+	@Override
 	protected void onStart() {
 		super.onStart();
 		// in order to receive broadcasted intents we need to register our receiver
-		registerReceiver(arduinoReceiver, new IntentFilter(AmarinoIntent.ACTION_RECEIVED));
+//		registerReceiver(arduinoReceiver, new IntentFilter(AmarinoIntent.ACTION_RECEIVED));
 		
 		// this is how you tell Amarino to connect to a specific BT device from within your own code
-		Amarino.connect(this, DEVICE_ADDRESS);
+//		Amarino.connect(this, DEVICE_ADDRESS);
 	}
 	
 	@Override
@@ -194,10 +222,10 @@ public class TabManager extends FragmentActivity implements
 		super.onStop();
 		
 		// if you connect in onStart() you must not forget to disconnect when your app is closed
-		Amarino.disconnect(this, DEVICE_ADDRESS);
+//		Amarino.disconnect(this, DEVICE_ADDRESS);
 		
 		// do never forget to unregister a registered receiver
-		unregisterReceiver(arduinoReceiver);
+//		unregisterReceiver(arduinoReceiver);
 	}
 
 }
