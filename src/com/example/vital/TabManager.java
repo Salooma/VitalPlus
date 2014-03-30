@@ -190,12 +190,10 @@ public class TabManager extends FragmentActivity implements
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		
-		//Context context;
-		
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
 	        case R.id.action_profile:
-	        	Intent intent = new Intent(this, SecondActivity.class);
+	        	Intent intent = new Intent(this, ProfileActivity.class);
 	        	startActivity(intent);
 	        	//openSearch();
 	            return true;
