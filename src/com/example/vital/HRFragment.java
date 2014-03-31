@@ -40,4 +40,10 @@ public class HRFragment extends Fragment {
         
         return rootView;
     }
+    
+    //create method to pass in data to processuservitals
+    //if (!ProcessUserVitals(value)) //if it doesn't fit in the expected range
+    //GeneratePopupNotification("Message") //generate a popup notification to the user screen
+    
+    
 }

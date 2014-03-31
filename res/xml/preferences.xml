@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference
+        android:key="pref_name"
+        android:title="Name"
+        android:defaultValue="" />
+    <EditTextPreference
+        android:key="pref_address"
+        android:title="Address"
+        android:defaultValue="" />
+    <EditTextPreference
+        android:key="pref_support"
+        android:title="Support"
+        android:defaultValue="" />
+</PreferenceScreen>

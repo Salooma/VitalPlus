@@ -20,7 +20,8 @@
 	/>
 	-->
     
-      <EditText
+   <EditText
+  android:id="@+id/user_firstname"
   android:layout_width="fill_parent"
   android:layout_height="wrap_content"
   android:hint="@string/profile_firstname"
@@ -28,8 +29,9 @@
   android:textColorHint="#FFFFFF"
 	/>
     
-        <EditText
- 	 android:layout_width="fill_parent"
+    <EditText
+    android:id="@+id/user_lastname"
+ 	android:layout_width="fill_parent"
   	android:layout_height="wrap_content"
   	android:hint="@string/profile_lastname"
 	android:inputType="text"
@@ -37,6 +39,7 @@
 	/>
     
           <EditText
+  android:id="@+id/user_age"
   android:layout_width="fill_parent"
   android:layout_height="wrap_content"
   android:hint="@string/profile_age"
@@ -45,6 +48,7 @@
 	/>
     
             <EditText       
+  android:id="@+id/user_weight"
   android:layout_width="fill_parent"
   android:layout_height="wrap_content"
   android:hint="@string/profile_weight"
@@ -53,25 +57,28 @@
 	/>
     
               <EditText
+    android:id="@+id/user_height"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
 	android:hint="@string/profile_height"
-	 android:inputType="number"
-	 android:textColorHint="#FFFFFF"
+	android:inputType="number"
+	android:textColorHint="#FFFFFF"
 	/>
     
                 <EditText
+  android:id="@+id/user_gender"
   android:layout_width="fill_parent"
   android:layout_height="wrap_content"
   android:hint="@string/profile_gender"
   android:textColorHint="#FFFFFF"
 	/>
 
-                 <Button
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="@string/send" />
+   <Button
+  android:id="@+id/save_button"
+  android:layout_width="100dp"
+  android:layout_height="wrap_content"
+  android:layout_gravity="right"
+  android:text="@string/send" />
                 
                 
 </LinearLayout>
