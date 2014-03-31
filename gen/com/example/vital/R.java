@@ -36,9 +36,11 @@ public final class R {
         public static final int oxygengraph=0x7f090002;
         public static final int oxygenvalue=0x7f090001;
         public static final int pager=0x7f09000a;
+        public static final int popupbutton=0x7f090010;
         public static final int save_button=0x7f090009;
         public static final int tempgraph=0x7f09000c;
         public static final int tempvalue=0x7f09000b;
+        public static final int text=0x7f09000f;
         public static final int user_age=0x7f090005;
         public static final int user_firstname=0x7f090003;
         public static final int user_gender=0x7f090008;
